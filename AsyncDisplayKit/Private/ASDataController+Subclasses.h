@@ -20,11 +20,6 @@ typedef void (^ASDataControllerCompletionBlock)(NSArray<ASCellNode *> *nodes, NS
 #pragma mark - Internal editing & completed store querying
 
 /**
- * Provides a collection of index paths for nodes of the given kind that are currently in the editing store
- */
-- (NSArray<NSIndexPath *> *)indexPathsForEditingNodesOfKind:(NSString *)kind;
-
-/**
  * Read-only access to the underlying editing nodes of the given kind
  */
 - (NSMutableArray *)editingNodesOfKind:(NSString *)kind;

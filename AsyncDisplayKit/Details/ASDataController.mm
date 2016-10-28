@@ -878,12 +878,6 @@ NSString * const ASDataControllerRowNodeKind = @"_ASDataControllerRowNodeKind";
 
 #pragma mark - Data Querying (Subclass API)
 
-- (NSArray<NSIndexPath *> *)indexPathsForEditingNodesOfKind:(NSString *)kind
-{
-  NSArray *nodes = _editingNodes[kind];
-  return nodes != nil ? ASIndexPathsForTwoDimensionalArray(nodes) : nil;
-}
-
 - (NSMutableArray *)editingNodesOfKind:(NSString *)kind
 {
   return _editingNodes[kind] ? : [NSMutableArray array];

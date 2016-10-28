@@ -74,10 +74,6 @@
   [self applyPendingSections:sectionIndexes];
   
   [_pendingNodeContexts enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull kind, NSMutableArray<ASIndexedNodeContext *> * _Nonnull contexts, __unused BOOL * _Nonnull stop) {
-    // Remove everything that existed before the reload, now that we're ready to insert replacements
-    NSArray *indexPaths = [self indexPathsForEditingNodesOfKind:kind];
-    [self deleteNodesOfKind:kind atIndexPaths:indexPaths completion:nil];
-    
     NSArray *editingNodes = [self editingNodesOfKind:kind];
     NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, editingNodes.count)];
     [self deleteSectionsOfKind:kind atIndexSet:indexSet completion:nil];
@@ -132,9 +128,6 @@
   [_sections removeObjectsAtIndexes:sections];
   
   for (NSString *kind in [self supplementaryKinds]) {
-    NSArray *indexPaths = ASIndexPathsForMultidimensionalArrayAtIndexSet([self editingNodesOfKind:kind], sections);
-    
-    [self deleteNodesOfKind:kind atIndexPaths:indexPaths completion:nil];
     [self deleteSectionsOfKind:kind atIndexSet:sections completion:nil];
   }
 }
